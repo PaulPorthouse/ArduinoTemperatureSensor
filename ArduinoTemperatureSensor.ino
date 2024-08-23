@@ -3,7 +3,7 @@
 #include "button.h"
 #include "timer.h"
 
-const int DISPLAY_BUTTON_PIN        = 13;
+const int DISPLAY_BUTTON_PIN        = 14;
 const int THERMISTOR_PIN            = 7;
 const int TEMP_READ_INTERVAL        = 1000;
 const int BUTTON_DISPLAY_DURATION   = 3000;
