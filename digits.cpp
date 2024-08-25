@@ -2,7 +2,9 @@
 #include "digits.h"
 #include "timer.h"
 
-Digits::Digits() { }
+Digits::Digits(int buttonDisplayDuration) {
+  this->buttonDisplayDuration = buttonDisplayDuration;
+}
 
 void Digits::setup() {
   // set up the pin modes
@@ -48,11 +50,27 @@ void Digits::displayValue(int value) {
   // split the value into it's separate digits
 	int tens = value / 10;
 	int ones = value % 10;
+  this->values[0] = tens;
+  this->values[1] = ones;
+  this->displayTimer.createInterval();
+}
 
-  // display the first digit
-	this->displayDigit(0, tens);
-	delay(this->digitDelay);
-  // display the second digit
-	this->displayDigit(1, ones);
-	delay(this->digitDelay);
+void Digits::loop() {
+  if (this->displayTimer.getIntervalMilliseconds() >= this->buttonDisplayDuration) {
+    // display the values only for a certain time
+    this->clearDisplay();
+    return;
+  }
+
+  // display a certain digit for 10ms, then switch to the other
+  if (this->digitTimer.getIntervalMilliseconds() > 10) {
+    if (this->dToDisplay == 0) {
+      this->dToDisplay = 1;
+    } else {
+      this->dToDisplay = 0;
+    }
+    this->digitTimer.createInterval();
+  }
+
+  this->displayDigit(this->dToDisplay, this->values[this->dToDisplay]);
 }

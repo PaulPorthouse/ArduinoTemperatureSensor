@@ -1,6 +1,7 @@
 #ifndef Digits_h
 #define Digits_h
 #include "Arduino.h"
+#include "timer.h"
 class Digits {
     protected:
         const byte digits[11] = {
@@ -13,10 +14,16 @@ class Digits {
         const int d2Pin = 11;
         int digitDelay = 10;
         void displayDigit(int digit, int value);
+        int values[2] = { 0, 0 };
+        int dToDisplay = 0;
+        Timer digitTimer = Timer();
+        Timer displayTimer = Timer();
+        int buttonDisplayDuration = 3000;
 
     public:
-        Digits();
+        Digits(int buttonDisplayDuration);
         void setup();
+        void loop();
         void displayValue(int value);
         void clearDisplay();
 };
