@@ -29,7 +29,7 @@ as I go, so it *should* get better.
 * [RV1] is used to control the brightness of the LED ring
 * [TH1] is used to provide the current temperature and is used with [R9] to work like a variable resistor
 * [R1 - R8] are used as current-limiting resistors to protect the seven segment displays
-* [U1] is a dual seven segment display but only uses 10 pins as it has digit selector pins
+* [U1] is a dual seven segment display but only uses 10 pins as it has digit selector pins and is used to display the current temperature for 3 seconds when [SW2] is pressed
 * [A1] is the heart of the system and drives everything else
 * [NOT CURRENTLY SHOWN] The LED ring is used underneath a diffuser to light up under certain configurations
   * White LEDs are always on to provide a night light function
